@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moody | Premium Running Eyewear</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0A0A0A',
+                            light: '#FAFAFA',
+                            accent: '#5C948B', 
+                            neon: '#00FFAA', 
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-brand-light text-brand-dark overflow-x-hidden font-sans selection:bg-brand-neon selection:text-brand-dark antialiased">
+
+    <!-- 3D Canvas Background -->
+    <canvas id="webgl-canvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full p-6 flex justify-between items-center z-50 mix-blend-difference text-white">
+        <div class="flex items-center gap-2">
+            <img src="logo.png" alt="Moody Logo" class="h-8 invert opacity-90" />
+            <span class="font-display font-bold text-xl tracking-tighter">MOODY</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide">
+            <a href="#showcase" class="hover:text-brand-neon transition-colors">MODELOS</a>
+            <a href="#lifestyle" class="hover:text-brand-neon transition-colors">LIFESTYLE</a>
+            <a href="#tech" class="hover:text-brand-neon transition-colors">TECNOLOGIA</a>
+        </div>
+        <button class="px-6 py-2 rounded-full border border-white/20 backdrop-blur-md hover:bg-white hover:text-black transition-all duration-300 text-sm font-medium">
+            COMPRE AGORA
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden" id="hero">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-brand-light/80 z-0 pointer-events-none"></div>
+        
+        <div class="z-10 text-center px-4 flex flex-col items-center">
+            <div class="overflow-hidden mb-2">
+                <h2 class="hero-subtitle text-brand-accent font-medium tracking-[0.2em] text-sm md:text-base uppercase">Premium Running Eyewear</h2>
+            </div>
+            <div class="overflow-hidden">
+                <h1 class="hero-title font-display font-extrabold text-[12vw] md:text-[8vw] leading-none tracking-tighter text-brand-dark">
+                    RUN <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-neon">FASTER</span>
+                </h1>
+            </div>
+            <div class="overflow-hidden mb-8">
+                <h1 class="hero-title font-display font-extrabold text-[12vw] md:text-[8vw] leading-none tracking-tighter text-brand-dark">
+                    FEEL <i class="italic font-light">LIGHTER</i>
+                </h1>
+            </div>
+            
+            <button class="hero-cta group relative px-8 py-4 bg-brand-dark text-white rounded-full overflow-hidden font-medium tracking-wide flex items-center gap-3">
+                <span class="relative z-10">CONHEÇA A MOODY</span>
+                <svg class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-accent to-brand-neon translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
+            </button>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hero-scroll">
+            <span class="text-xs tracking-widest uppercase">Scroll</span>
+            <div class="w-[1px] h-12 bg-brand-dark overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-full bg-brand-neon translate-y-[-100%] animate-scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section class="w-full py-32 bg-brand-dark text-brand-light relative z-10" id="showcase">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 section-header">
+                <div>
+                    <h3 class="font-display text-5xl md:text-7xl font-bold tracking-tighter">AERO<br/><span class="text-brand-accent">SERIES</span></h3>
+                </div>
+                <p class="max-w-sm text-gray-400 mt-6 md:mt-0">Desenvolvido para o corredor urbano. Moldura ultra-leve, design aerodinâmico e estilo intransigente.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 product-grid">
+                <!-- Product Card -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative w-full aspect-square bg-[#1A1A1A] rounded-3xl overflow-hidden mb-6 flex items-center justify-center p-12">
+                        <div class="absolute inset-0 bg-gradient-to-br from-brand-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <img src="product.png" alt="Aero X1" class="w-full h-full object-contain transform group-hover:scale-110 group-hover:rotate-[-5deg] transition-transform duration-700 ease-out relative z-10 filter drop-shadow-[0_20px_50px_rgba(0,255,170,0.15)]" />
+                        <div class="absolute top-6 left-6 px-3 py-1 border border-white/20 rounded-full text-xs font-medium backdrop-blur-md">NEW</div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-display font-bold text-2xl">AERO X1</h4>
+                            <p class="text-gray-400">Matte Black / Neon</p>
+                        </div>
+                        <span class="text-xl font-medium">R$185</span>
+                    </div>
+                </div>
+
+                <!-- Product Card -->
+                <div class="product-card group cursor-pointer md:mt-24">
+                    <div class="relative w-full aspect-square bg-[#1A1A1A] rounded-3xl overflow-hidden mb-6 flex items-center justify-center p-12">
+                        <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <img src="product.png" alt="Aero Lite" class="w-full h-full object-contain transform group-hover:scale-110 group-hover:rotate-[5deg] transition-transform duration-700 ease-out relative z-10 filter grayscale group-hover:grayscale-0 drop-shadow-[0_20px_50px_rgba(255,255,255,0.1)]" />
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-display font-bold text-2xl">AERO LITE</h4>
+                            <p class="text-gray-400">Crystal / Silver</p>
+                        </div>
+                        <span class="text-xl font-medium">R$165</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lifestyle Section -->
+    <section class="relative w-full h-[150vh] bg-brand-light overflow-hidden" id="lifestyle">
+        <div class="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0 lifestyle-bg">
+                <img src="lifestyle.png" alt="Runner Lifestyle" class="w-full h-full object-cover object-center filter brightness-50" />
+            </div>
+            <div class="absolute inset-0 bg-brand-dark/30 z-10"></div>
+            
+            <div class="relative z-20 text-center text-white px-4">
+                <h2 class="font-display font-extrabold text-[15vw] leading-none tracking-tighter mix-blend-overlay opacity-80 lifestyle-text-bg">MOODY</h2>
+                <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                    <p class="lifestyle-text text-xl md:text-3xl font-light tracking-wide max-w-2xl text-center leading-relaxed backdrop-blur-sm p-8 rounded-3xl bg-black/20 border border-white/10 shadow-2xl">
+                        Conquiste a selva de pedra. <br/>
+                        <strong class="font-display font-bold text-brand-neon">Moody</strong> foi projetado para os inquietos, combinando alta performance com estética pronta para as ruas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Banner -->
+    <div class="w-full bg-brand-neon py-4 overflow-hidden flex whitespace-nowrap z-30 relative border-y border-brand-dark">
+        <div class="animate-marquee font-display font-bold text-2xl tracking-widest text-brand-dark uppercase flex gap-8">
+            <span>RUN FASTER</span> <span>•</span>
+            <span>LOOK BETTER</span> <span>•</span>
+            <span>MOODY EYEWEAR</span> <span>•</span>
+            <span>ULTRA LIGHT</span> <span>•</span>
+            <span>POLARIZED</span> <span>•</span>
+            <span>RUN FASTER</span> <span>•</span>
+            <span>LOOK BETTER</span> <span>•</span>
+            <span>MOODY EYEWEAR</span> <span>•</span>
+            <span>ULTRA LIGHT</span> <span>•</span>
+            <span>POLARIZED</span> <span>•</span>
+        </div>
+    </div>
+
+    <!-- Tech / Performance Section -->
+    <section class="py-32 px-6 bg-brand-light relative z-10" id="tech">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1 tech-content">
+                    <h3 class="font-display text-4xl md:text-6xl font-bold tracking-tighter mb-8 text-brand-dark">ZERO<br/>BOUNCE.<br/>ALL STYLE.</h3>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-4 items-start feature-item">
+                            <div class="w-12 h-12 rounded-full border border-brand-accent flex items-center justify-center shrink-0 text-brand-accent">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2">Featherweight Frame</h4>
+                                <p class="text-gray-600">Fabricado em polímero TR90 de grau aeroespacial. Você vai esquecer que está usando.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 items-start feature-item">
+                            <div class="w-12 h-12 rounded-full border border-brand-accent flex items-center justify-center shrink-0 text-brand-accent">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2">Clarity Lenses</h4>
+                                <p class="text-gray-600">Lentes polarizadas de alto contraste para detectar cada detalhe na estrada ou trilha, reduzindo completamente o brilho.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-1 md:order-2 relative h-[500px] w-full rounded-3xl overflow-hidden glass-panel tech-visual group">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-accent/30 to-brand-neon/30 mix-blend-multiply opacity-50"></div>
+                    <img src="product.png" alt="Tech Details" class="w-full h-full object-cover object-center filter group-hover:scale-105 transition-transform duration-1000" />
+                    <!-- Floating tech annotations -->
+                    <div class="absolute top-1/4 left-1/4 w-3 h-3 bg-brand-neon rounded-full shadow-[0_0_15px_#00FFAA] animate-pulse"></div>
+                    <div class="absolute top-1/4 left-[28%] bg-white/80 backdrop-blur text-xs px-2 py-1 rounded font-medium text-brand-dark">Proteção UV400</div>
+                    
+                    <div class="absolute bottom-1/3 right-1/4 w-3 h-3 bg-brand-neon rounded-full shadow-[0_0_15px_#00FFAA] animate-pulse delay-300"></div>
+                    <div class="absolute bottom-1/3 right-[28%] bg-white/80 backdrop-blur text-xs px-2 py-1 rounded font-medium text-brand-dark">Borracha antiderrapante</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="py-32 bg-brand-dark text-center relative overflow-hidden z-10 cta-section">
+        <!-- Abstract gradient blob -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] bg-brand-accent/40 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="relative z-10 flex flex-col items-center">
+            <h2 class="font-display font-extrabold text-5xl md:text-8xl tracking-tighter text-white mb-8">FAÇA PARTE DO<br/>MOVIMENTO</h2>
+            <button class="px-10 py-5 bg-brand-neon text-brand-dark font-bold text-lg rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(0,255,170,0.4)] hover:shadow-[0_0_50px_rgba(0,255,170,0.6)]">
+                COMPRE AGORA
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-brand-dark border-t border-white/10 text-brand-light z-10 relative">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2 opacity-50">
+                <img src="logo.png" alt="Moody Logo" class="h-6 invert" />
+                <span class="font-display font-bold tracking-tighter">MOODY © 2026</span>
+            </div>
+            <div class="flex gap-6 text-sm text-gray-400">
+                <a href="https://www.instagram.com/use.mo0dy" class="hover:text-white transition-colors">Instagram</a>
+                <a href="https://www.instagram.com/use.mo0dy" class="hover:text-white transition-colors">TikTok</a>
+                <a href="https://www.instagram.com/use.mo0dy" class="hover:text-white transition-colors">Strava</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    
+    <script src="main.js"></script>
+</body>
+</html>
