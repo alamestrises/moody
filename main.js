@@ -135,7 +135,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // Create Particles
 const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = 1500;
+const particlesCount = 2000;
 const posArray = new Float32Array(particlesCount * 3);
 
 for(let i = 0; i < particlesCount * 3; i++) {
@@ -147,7 +147,7 @@ particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3
 
 // Material
 const particlesMaterial = new THREE.PointsMaterial({
-    size: 0.02,
+    size: 0.2,
     color: '#5C948B', // Brand accent color
     transparent: true,
     opacity: 0.6,
