@@ -16,8 +16,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Link GSAP to Lenis
 lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add((time)=>{
-  lenis.raf(time * 1000)
+gsap.ticker.add((time) => {
+    lenis.raf(time * 1000)
 });
 gsap.ticker.lagSmoothing(0, 0);
 
@@ -31,23 +31,23 @@ tlHero.from('.hero-subtitle', {
     ease: "power3.out",
     delay: 0.5
 })
-.from('.hero-title', {
-    y: 100,
-    opacity: 0,
-    duration: 1.2,
-    stagger: 0.2,
-    ease: "power4.out",
-}, "-=0.8")
-.from('.hero-cta', {
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    ease: "power3.out"
-}, "-=0.8")
-.from('.hero-scroll', {
-    opacity: 0,
-    duration: 1
-}, "-=0.5");
+    .from('.hero-title', {
+        y: 100,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: "power4.out",
+    }, "-=0.8")
+    .from('.hero-cta', {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    }, "-=0.8")
+    .from('.hero-scroll', {
+        opacity: 0,
+        duration: 1
+    }, "-=0.5");
 
 
 // --- 4. Showcase Animations ---
@@ -133,25 +133,64 @@ const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
+// Função para gerar a textura de estrela de 4 pontas dinamicamente
+function createStarTexture() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 128;
+    canvas.height = 128;
+    const ctx = canvas.getContext('2d');
+
+    const cx = 64;
+    const cy = 64;
+    const r = 48; // Raio da estrela, deixando margem para o glow não cortar nas bordas
+
+    // Desenhar um brilho sutil ao redor da estrela
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.9)';
+    ctx.shadowBlur = 14;
+
+    ctx.fillStyle = '#ffffff'; // Branco puro para ser colorido pelo PointsMaterial do Three.js
+    ctx.beginPath();
+    
+    // Começa na ponta superior
+    ctx.moveTo(cx, cy - r);
+    // Curva até a ponta direita, suavizando para dentro em direção ao centro (cx, cy)
+    ctx.quadraticCurveTo(cx, cy, cx + r, cy);
+    // Curva até a ponta inferior
+    ctx.quadraticCurveTo(cx, cy, cx, cy + r);
+    // Curva até a ponta esquerda
+    ctx.quadraticCurveTo(cx, cy, cx - r, cy);
+    // Curva de volta à ponta superior
+    ctx.quadraticCurveTo(cx, cy, cx, cy - r);
+    
+    ctx.closePath();
+    ctx.fill();
+
+    return new THREE.CanvasTexture(canvas);
+}
+
+const starTexture = createStarTexture();
+
 // Create Particles
 const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = 2000;
+const particlesCount = 1500;
 const posArray = new Float32Array(particlesCount * 3);
 
-for(let i = 0; i < particlesCount * 3; i++) {
+for (let i = 0; i < particlesCount * 3; i++) {
     // Spread particles across a wide area
     posArray[i] = (Math.random() - 0.5) * 15;
 }
 
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
-// Material
+// Material de estrelas de alta fidelidade
 const particlesMaterial = new THREE.PointsMaterial({
-    size: 0.2,
-    color: '#5C948B', // Brand accent color
+    size: 0.45,
+    color: '#5C948B', // Cor de destaque da marca
     transparent: true,
-    opacity: 0.6,
-    blending: THREE.AdditiveBlending
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending,
+    map: starTexture,
+    depthWrite: false
 });
 
 // Mesh
@@ -193,10 +232,10 @@ function animate() {
     // Ease mouse movement
     targetX = mouseX * 0.5;
     targetY = mouseY * 0.5;
-    
+
     particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
     particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
-    
+
     // Move particles based on scroll
     particlesMesh.position.y = scrollY * -0.001;
 
